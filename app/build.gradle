@@ -14,11 +14,43 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+
+        finalProduction {
+            dimension "default"
+            applicationId "me.fleka.modernandroidapp"
+            resValue "string", "app_name", "Modern App"
+        }
+
+        demoProduction {
+            dimension "default"
+            applicationId "me.fleka.modernandroidapp.demoproduction"
+            resValue "string", "app_name", "Modern App Demo P"
+        }
+
+        demoTesting {
+            dimension "default"
+            applicationId "me.fleka.modernandroidapp.demotesting"
+            resValue "string", "app_name", "Modern App Demo T"
+        }
+
+
+        mock {
+            dimension "default"
+            applicationId "me.fleka.modernandroidapp.mock"
+            resValue "string", "app_name", "Modern App Mock"
         }
     }
 }
