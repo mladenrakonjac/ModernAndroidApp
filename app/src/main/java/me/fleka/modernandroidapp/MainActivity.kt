@@ -2,6 +2,7 @@ package me.fleka.modernandroidapp
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import me.fleka.modernandroidapp.databinding.ActivityMainBinding
 import me.fleka.modernandroidapp.uimodels.Repository
@@ -19,6 +20,12 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.repository = repository
         binding.executePendingBindings()
+
+        Handler().postDelayed({repository.repositoryName="New Name"
+            binding.repository = repository
+            binding.executePendingBindings()}, 2000)
+
+
 
     }
 }
