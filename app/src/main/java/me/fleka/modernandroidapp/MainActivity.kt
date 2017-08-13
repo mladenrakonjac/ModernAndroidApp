@@ -2,22 +2,24 @@ package me.fleka.modernandroidapp
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import me.fleka.modernandroidapp.databinding.ActivityMainBinding
+import me.fleka.modernandroidapp.uimodels.Repository
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
+    var repository = Repository("Medium Android Repository Article",
+            "Fleka", 1000, true)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.apply {
-            repositoryName.text = "Medium Android Repository Article"
-            repositoryOwner.text = "Fleka"
-            numberOfStarts.text = "1000 stars"
+        binding.repository = repository
+        binding.executePendingBindings()
 
-        }
     }
 }
