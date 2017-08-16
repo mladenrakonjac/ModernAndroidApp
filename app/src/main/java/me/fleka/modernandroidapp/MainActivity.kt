@@ -22,10 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding.executePendingBindings()
 
         Handler().postDelayed({repository.repositoryName="New Name"
-            binding.repository = repository
-            binding.executePendingBindings()}, 2000)
-
-
+            }, 2000)
 
     }
 }
