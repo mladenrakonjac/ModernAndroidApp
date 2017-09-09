@@ -14,15 +14,13 @@ class MainViewModel {
 
     var isLoading = ObservableField<Boolean>()
 
-    val onDataReadyCallback = object : OnDataReadyCallback {
-        override fun onDataReady(data: String) {
-            isLoading.set(false)
-            text.set(data)
-        }
-    }
-
     fun refresh(){
         isLoading.set(true)
-        repoModel.refreshData(onDataReadyCallback)
+        repoModel.refreshData(object : OnDataReadyCallback {
+            override fun onDataReady(data: String) {
+                isLoading.set(false)
+                text.set(data)
+            }
+        })
     }
 }
