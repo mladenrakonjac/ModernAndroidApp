@@ -10,7 +10,7 @@ import me.fleka.modernandroidapp.data.RepoModel
 class MainViewModel {
     var repoModel: RepoModel = RepoModel()
 
-    val text = ObservableField<String>()
+    val text = ObservableField<String>("old data")
 
     var isLoading = ObservableField<Boolean>()
 
