@@ -5,7 +5,7 @@ import android.os.Handler
 /**
  * Created by Mladen Rakonjac on 8/26/17.
  */
-class RepoModel(){
+class RepoModel {
 
     fun refreshData(onDataReadyCallback: OnDataReadyCallback) {
         Handler().postDelayed({ onDataReadyCallback.onDataReady("new data") },2000)
