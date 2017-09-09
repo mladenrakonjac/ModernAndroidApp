@@ -1,5 +1,6 @@
 package me.fleka.modernandroidapp
 
+import android.databinding.ObservableField
 import me.fleka.modernandroidapp.data.OnDataReadyCallback
 import me.fleka.modernandroidapp.data.RepoModel
 
@@ -8,16 +9,20 @@ import me.fleka.modernandroidapp.data.RepoModel
  */
 class MainViewModel {
     var repoModel: RepoModel = RepoModel()
-    var text: String = ""
-    var isLoading: Boolean = false
+
+    val text = ObservableField<String>()
+
+    var isLoading = ObservableField<Boolean>()
 
     val onDataReadyCallback = object : OnDataReadyCallback {
         override fun onDataReady(data: String) {
-            text = data
+            isLoading.set(false)
+            text.set(data)
         }
     }
 
-    fun refresh() {
+    fun refresh(){
+        isLoading.set(true)
         repoModel.refreshData(onDataReadyCallback)
     }
 }
