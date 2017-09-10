@@ -1,5 +1,6 @@
 package me.fleka.modernandroidapp
 
+import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import me.fleka.modernandroidapp.data.OnDataReadyCallback
 import me.fleka.modernandroidapp.data.RepoModel
@@ -7,7 +8,7 @@ import me.fleka.modernandroidapp.data.RepoModel
 /**
  * Created by Mladen Rakonjac on 8/26/17.
  */
-class MainViewModel {
+class MainViewModel : ViewModel() {
     var repoModel: RepoModel = RepoModel()
 
     val text = ObservableField("old data")
