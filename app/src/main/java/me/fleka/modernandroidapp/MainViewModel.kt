@@ -2,7 +2,7 @@ package me.fleka.modernandroidapp
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
-import me.fleka.modernandroidapp.data.OnDataReadyCallback
+import android.util.Log
 import me.fleka.modernandroidapp.data.OnRepositoryReadyCallback
 import me.fleka.modernandroidapp.data.RepoModel
 import me.fleka.modernandroidapp.uimodels.Repository
@@ -19,17 +19,8 @@ class MainViewModel : ViewModel() {
 
     var repositories = ArrayList<Repository>()
 
-    fun refresh(){
-        isLoading.set(true)
-        repoModel.refreshData(object : OnDataReadyCallback {
-            override fun onDataReady(data: String) {
-                isLoading.set(false)
-                text.set(data)
-            }
-        })
-    }
-
-    fun getRepositories() {
+    fun loadRepositories() {
+        Log.d("sd", "sd")
         isLoading.set(true)
         repoModel.getRepositories(object : OnRepositoryReadyCallback {
             override fun onDataReady(data: ArrayList<Repository>) {
