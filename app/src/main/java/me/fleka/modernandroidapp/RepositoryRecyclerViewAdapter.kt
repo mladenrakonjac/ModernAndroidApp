@@ -29,6 +29,11 @@ class RepositoryRecyclerViewAdapter(private var items: ArrayList<Repository>,
         fun onItemClick(position: Int)
     }
 
+    fun replaceData(arrayList: ArrayList<Repository>) {
+        items = arrayList
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(private var binding: RvItemRepositoryBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
