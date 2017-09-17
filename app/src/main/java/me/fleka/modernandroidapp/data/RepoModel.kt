@@ -8,10 +8,6 @@ import me.fleka.modernandroidapp.uimodels.Repository
  */
 class RepoModel {
 
-    fun refreshData(onDataReadyCallback: OnDataReadyCallback) {
-        Handler().postDelayed({ onDataReadyCallback.onDataReady("new data") },2000)
-    }
-
     fun getRepositories(onRepositoryReadyCallback: OnRepositoryReadyCallback) {
         var arrayList = ArrayList<Repository>()
         arrayList.add(Repository("First", "Owner 1", 100, false))
@@ -20,10 +16,6 @@ class RepoModel {
 
         Handler().postDelayed({ onRepositoryReadyCallback.onDataReady(arrayList) }, 2000)
     }
-}
-
-interface OnDataReadyCallback {
-    fun onDataReady(data : String)
 }
 
 interface OnRepositoryReadyCallback {
