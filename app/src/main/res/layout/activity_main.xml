@@ -17,6 +17,17 @@
         android:layout_height="match_parent"
         tools:context="me.fleka.modernandroidapp.MainActivity">
 
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/refresh_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/repository_rv"
             android:layout_width="0dp"
@@ -29,17 +40,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/rv_item_repository" />
 
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:indeterminate="true"
-            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@+id/refresh_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+
 
         <Button
             android:id="@+id/refresh_button"
@@ -49,7 +50,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:onClick="@{() -> viewModel.refresh()}"
+            android:onClick="@{() -> viewModel.loadRepositories()}"
             android:clickable="@{viewModel.isLoading ? false : true}"
             android:text="Refresh"
             app:layout_constraintBottom_toBottomOf="parent"
