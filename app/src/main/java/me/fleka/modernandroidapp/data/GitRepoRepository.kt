@@ -6,7 +6,7 @@ import me.fleka.modernandroidapp.uimodels.Repository
 /**
  * Created by Mladen Rakonjac on 8/26/17.
  */
-class RepoModel {
+class GitRepoRepository {
 
     fun getRepositories(onRepositoryReadyCallback: OnRepositoryReadyCallback) {
         var arrayList = ArrayList<Repository>()
