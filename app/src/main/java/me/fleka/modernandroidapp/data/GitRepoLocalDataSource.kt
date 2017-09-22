@@ -14,7 +14,7 @@ class GitRepoLocalDataSource {
         arrayList.add(Repository("Second From Local", "Owner 2", 30, true))
         arrayList.add(Repository("Third From Local", "Owner 3", 430, false))
 
-        Handler().postDelayed({ onRepositoryReadyCallback.onDataReady(arrayList) }, 2000)
+        Handler().postDelayed({ onRepositoryReadyCallback.onLocalDataReady(arrayList) }, 2000)
     }
 
     fun saveRepositories(arrayList: ArrayList<Repository>) {
@@ -23,5 +23,5 @@ class GitRepoLocalDataSource {
 }
 
 interface OnRepoLocalReadyCallback {
-    fun onDataReady(data: ArrayList<Repository>)
+    fun onLocalDataReady(data: ArrayList<Repository>)
 }

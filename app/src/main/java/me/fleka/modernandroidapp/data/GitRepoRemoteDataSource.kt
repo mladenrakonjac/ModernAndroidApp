@@ -14,10 +14,10 @@ class GitRepoRemoteDataSource {
         arrayList.add(Repository("Second from remote", "Owner 2", 30, true))
         arrayList.add(Repository("Third from remote", "Owner 3", 430, false))
 
-        Handler().postDelayed({ onRepositoryReadyCallback.onDataReady(arrayList) }, 2000)
+        Handler().postDelayed({ onRepositoryReadyCallback.onRemoteDataReady(arrayList) }, 2000)
     }
 }
 
 interface OnRepoRemoteReadyCallback {
-    fun onDataReady(data: ArrayList<Repository>)
+    fun onRemoteDataReady(data: ArrayList<Repository>)
 }

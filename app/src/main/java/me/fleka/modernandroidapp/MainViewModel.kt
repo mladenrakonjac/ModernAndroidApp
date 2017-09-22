@@ -1,17 +1,19 @@
 package me.fleka.modernandroidapp
 
+import android.app.Application
+import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
-import me.fleka.modernandroidapp.data.OnRepositoryReadyCallback
 import me.fleka.modernandroidapp.data.GitRepoRepository
+import me.fleka.modernandroidapp.data.OnRepositoryReadyCallback
 import me.fleka.modernandroidapp.uimodels.Repository
 
 /**
  * Created by Mladen Rakonjac on 8/26/17.
  */
-class MainViewModel : ViewModel() {
-    var gitRepoRepository: GitRepoRepository = GitRepoRepository()
+class MainViewModel(application: Application) : AndroidViewModel(application) {
+
+    var gitRepoRepository: GitRepoRepository = GitRepoRepository(context = getApplication())
 
     val text = ObservableField("old data")
 
