@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableField
+import me.fleka.modernandroidapp.androidmanagers.NetManager
 import me.fleka.modernandroidapp.data.GitRepoRepository
 import me.fleka.modernandroidapp.data.OnRepositoryReadyCallback
 import me.fleka.modernandroidapp.uimodels.Repository
@@ -13,7 +14,7 @@ import me.fleka.modernandroidapp.uimodels.Repository
  */
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    var gitRepoRepository: GitRepoRepository = GitRepoRepository(context = getApplication())
+    var gitRepoRepository: GitRepoRepository = GitRepoRepository(NetManager(getApplication()))
 
     val text = ObservableField("old data")
 
