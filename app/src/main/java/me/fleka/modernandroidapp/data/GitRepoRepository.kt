@@ -1,6 +1,5 @@
 package me.fleka.modernandroidapp.data
 
-import android.os.Handler
 import me.fleka.modernandroidapp.uimodels.Repository
 
 /**
@@ -8,13 +7,18 @@ import me.fleka.modernandroidapp.uimodels.Repository
  */
 class GitRepoRepository {
 
-    fun getRepositories(onRepositoryReadyCallback: OnRepositoryReadyCallback) {
-        var arrayList = ArrayList<Repository>()
-        arrayList.add(Repository("First", "Owner 1", 100, false))
-        arrayList.add(Repository("Second", "Owner 2", 30, true))
-        arrayList.add(Repository("Third", "Owner 3", 430, false))
+    val localDataSource = GitRepoLocalDataSource()
+    val remoteDataSource = GitRepoRemoteDataSource()
 
-        Handler().postDelayed({ onRepositoryReadyCallback.onDataReady(arrayList) }, 2000)
+
+    fun getRepositories(onRepositoryReadyCallback: OnRepositoryReadyCallback) {
+        remoteDataSource.getRepositories(object : OnRepoRemoteReadyCallback {
+            override fun onDataReady(data: ArrayList<Repository>) {
+                localDataSource.saveRepositories(data)
+                onRepositoryReadyCallback.onDataReady(data)
+            }
+
+        })
     }
 }
 
