@@ -12,23 +12,25 @@ class GitRepoRepository(val netManager: NetManager) {
     val remoteDataSource = GitRepoRemoteDataSource()
 
     fun getRepositories(onRepositoryReadyCallback: OnRepositoryReadyCallback) {
-        remoteDataSource.getRepositories(object : OnRepoRemoteReadyCallback {
-            override fun onRemoteDataReady(data: ArrayList<Repository>) {
-                netManager.isConnectedToInternet?.let {
-                    if (it) {
+
+        netManager.isConnectedToInternet?.let {
+            if (it) {
+                remoteDataSource.getRepositories(object : OnRepoRemoteReadyCallback {
+                    override fun onRemoteDataReady(data: ArrayList<Repository>) {
                         localDataSource.saveRepositories(data)
                         onRepositoryReadyCallback.onDataReady(data)
-                    } else {
-                        localDataSource.getRepositories(object : OnRepoLocalReadyCallback {
-                            override fun onLocalDataReady(data: ArrayList<Repository>) {
-                                onRepositoryReadyCallback.onDataReady(data)
-                            }
-                        })
                     }
-                }
+                })
+            } else {
+                localDataSource.getRepositories(object : OnRepoLocalReadyCallback {
+                    override fun onLocalDataReady(data: ArrayList<Repository>) {
+                        onRepositoryReadyCallback.onDataReady(data)
+                    }
+                })
             }
+        }
 
-        })
+
     }
 }
 
