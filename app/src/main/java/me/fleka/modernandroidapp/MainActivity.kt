@@ -1,15 +1,15 @@
 package me.fleka.modernandroidapp
 
-import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import me.fleka.modernandroidapp.databinding.ActivityMainBinding
 import me.fleka.modernandroidapp.uimodels.Repository
 
-class MainActivity : LifecycleActivity(), RepositoryRecyclerViewAdapter.OnItemClickListener {
+class MainActivity : AppCompatActivity(), RepositoryRecyclerViewAdapter.OnItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private val repositoryRecyclerViewAdapter = RepositoryRecyclerViewAdapter(arrayListOf(), this)
