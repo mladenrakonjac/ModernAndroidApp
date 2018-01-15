@@ -9,6 +9,7 @@ import io.reactivex.observers.DisposableObserver
 import me.fleka.modernandroidapp.androidmanagers.NetManager
 import me.fleka.modernandroidapp.data.GitRepoRepository
 import me.fleka.modernandroidapp.uimodels.Repository
+import plusAssign
 
 /**
  * View Model
@@ -23,12 +24,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     var repositories = MutableLiveData<ArrayList<Repository>>()
 
-    private val compositeDisposable: CompositeDisposable? = CompositeDisposable()
-
+    private val compositeDisposable = CompositeDisposable()
 
     fun loadRepositories() {
         isLoading.set(true)
-        compositeDisposable?.add(gitRepoRepository.getRepositories().subscribeWith(object : DisposableObserver<ArrayList<Repository>>() {
+        compositeDisposable += gitRepoRepository.getRepositories().subscribeWith(object : DisposableObserver<ArrayList<Repository>>() {
 
             override fun onError(e: Throwable) {
                 //if some error happens in our data layer our app will not crash, we will
@@ -42,12 +42,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             override fun onComplete() {
                 isLoading.set(false)
             }
-        }))
+        })
     }
 
     override fun onCleared() {
         super.onCleared()
-        if (compositeDisposable != null && !compositeDisposable.isDisposed) {
+        if (!compositeDisposable.isDisposed) {
             compositeDisposable.dispose()
         }
     }
