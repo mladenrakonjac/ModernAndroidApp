@@ -4,17 +4,18 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableField
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableObserver
 import me.fleka.modernandroidapp.androidmanagers.NetManager
 import me.fleka.modernandroidapp.data.GitRepoRepository
-import me.fleka.modernandroidapp.data.OnRepositoryReadyCallback
 import me.fleka.modernandroidapp.uimodels.Repository
 
 /**
- * Created by Mladen Rakonjac on 8/26/17.
+ * View Model
  */
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    var gitRepoRepository: GitRepoRepository = GitRepoRepository(NetManager(getApplication()))
+    private var gitRepoRepository: GitRepoRepository = GitRepoRepository(NetManager(getApplication()))
 
     val text = ObservableField("old data")
 
@@ -22,13 +23,32 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     var repositories = MutableLiveData<ArrayList<Repository>>()
 
+    private val compositeDisposable: CompositeDisposable? = CompositeDisposable()
+
+
     fun loadRepositories() {
         isLoading.set(true)
-        gitRepoRepository.getRepositories(object : OnRepositoryReadyCallback {
-            override fun onDataReady(data: ArrayList<Repository>) {
-                isLoading.set(false)
+        compositeDisposable?.add(gitRepoRepository.getRepositories().subscribeWith(object : DisposableObserver<ArrayList<Repository>>() {
+
+            override fun onError(e: Throwable) {
+                //if some error happens in our data layer our app will not crash, we will
+                // get error here
+            }
+
+            override fun onNext(data: ArrayList<Repository>) {
                 repositories.value = data
             }
-        })
+
+            override fun onComplete() {
+                isLoading.set(false)
+            }
+        }))
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        if (compositeDisposable != null && !compositeDisposable.isDisposed) {
+            compositeDisposable.dispose()
+        }
     }
 }

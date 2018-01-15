@@ -1,40 +1,29 @@
 package me.fleka.modernandroidapp.data
 
+import io.reactivex.Observable
 import me.fleka.modernandroidapp.androidmanagers.NetManager
 import me.fleka.modernandroidapp.uimodels.Repository
 
 /**
- * Created by Mladen Rakonjac on 8/26/17.
+ * Repository for GitHub Repository models
  */
-class GitRepoRepository(val netManager: NetManager) {
+class GitRepoRepository(private val netManager: NetManager) {
 
-    val localDataSource = GitRepoLocalDataSource()
-    val remoteDataSource = GitRepoRemoteDataSource()
+    private val localDataSource = GitRepoLocalDataSource()
+    private val remoteDataSource = GitRepoRemoteDataSource()
 
-    fun getRepositories(onRepositoryReadyCallback: OnRepositoryReadyCallback) {
+    fun getRepositories(): Observable<ArrayList<Repository>> {
 
         netManager.isConnectedToInternet?.let {
             if (it) {
-                remoteDataSource.getRepositories(object : OnRepoRemoteReadyCallback {
-                    override fun onRemoteDataReady(data: ArrayList<Repository>) {
-                        localDataSource.saveRepositories(data)
-                        onRepositoryReadyCallback.onDataReady(data)
-                    }
-                })
-            } else {
-                localDataSource.getRepositories(object : OnRepoLocalReadyCallback {
-                    override fun onLocalDataReady(data: ArrayList<Repository>) {
-                        onRepositoryReadyCallback.onDataReady(data)
-                    }
-                })
+                //todo save those data to local data store
+                return remoteDataSource.getRepositories()
             }
         }
 
-
+        return localDataSource.getRepositories()
     }
 }
 
-interface OnRepositoryReadyCallback {
-    fun onDataReady(data: ArrayList<Repository>)
-}
+
 
