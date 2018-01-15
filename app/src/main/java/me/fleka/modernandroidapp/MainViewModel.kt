@@ -4,8 +4,10 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableField
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 import me.fleka.modernandroidapp.androidmanagers.NetManager
 import me.fleka.modernandroidapp.data.GitRepoRepository
 import me.fleka.modernandroidapp.uimodels.Repository
@@ -28,7 +30,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadRepositories() {
         isLoading.set(true)
-        compositeDisposable += gitRepoRepository.getRepositories().subscribeWith(object : DisposableObserver<ArrayList<Repository>>() {
+        compositeDisposable += gitRepoRepository
+                .getRepositories()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<ArrayList<Repository>>() {
 
             override fun onError(e: Throwable) {
                 //if some error happens in our data layer our app will not crash, we will
