@@ -16,8 +16,11 @@ class GitRepoRepository(private val netManager: NetManager) {
 
         netManager.isConnectedToInternet?.let {
             if (it) {
-                //todo save those data to local data store
-                return remoteDataSource.getRepositories()
+                return remoteDataSource.getRepositories().flatMap {
+                    return@flatMap localDataSource.saveRepositories(it)
+                            .toSingleDefault(it)
+                            .toObservable()
+                }
             }
         }
 

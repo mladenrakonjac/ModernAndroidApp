@@ -1,6 +1,8 @@
 package me.fleka.modernandroidapp.data
 
+import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import me.fleka.modernandroidapp.uimodels.Repository
 import java.util.concurrent.TimeUnit
 
@@ -19,7 +21,7 @@ class GitRepoLocalDataSource {
         return Observable.just(arrayList).delay(2, TimeUnit.SECONDS)
     }
 
-    fun saveRepositories(arrayList: ArrayList<Repository>) {
-        //todo save repositories in DB
+    fun saveRepositories(arrayList: ArrayList<Repository>): Completable {
+        return Single.just(1).delay(1, TimeUnit.SECONDS).toCompletable()
     }
 }
