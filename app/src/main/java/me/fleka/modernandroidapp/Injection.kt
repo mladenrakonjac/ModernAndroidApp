@@ -9,9 +9,23 @@ import me.fleka.modernandroidapp.data.GitRepoRepository
  */
 object Injection {
 
+    private var NET_MANAGER: NetManager? = null
+
+    private fun provideNetManager(context: Context): NetManager {
+        if (NET_MANAGER == null) {
+            NET_MANAGER = NetManager(context)
+        }
+        return NET_MANAGER!!
+    }
+
+    private fun gitRepoRepository(netManager: NetManager): GitRepoRepository {
+        return GitRepoRepository(netManager)
+    }
+
     fun provideMainViewModelFactory(context: Context): MainViewModelFactory {
-        val netManager = NetManager(context)
-        val repository = GitRepoRepository(netManager)
+        val netManager = provideNetManager(context)
+        val repository = gitRepoRepository(netManager)
         return MainViewModelFactory(repository)
     }
+
 }
