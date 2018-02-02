@@ -1,14 +1,12 @@
 package me.fleka.modernandroidapp
 
-import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import me.fleka.modernandroidapp.androidmanagers.NetManager
 import me.fleka.modernandroidapp.data.GitRepoRepository
 import me.fleka.modernandroidapp.uimodels.Repository
 import plusAssign
@@ -16,9 +14,8 @@ import plusAssign
 /**
  * View Model
  */
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(private var gitRepoRepository: GitRepoRepository) : ViewModel() {
 
-    private var gitRepoRepository: GitRepoRepository = GitRepoRepository(NetManager(getApplication()))
 
     val text = ObservableField("old data")
 

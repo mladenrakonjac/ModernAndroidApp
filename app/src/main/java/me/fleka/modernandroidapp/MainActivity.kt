@@ -6,6 +6,8 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import me.fleka.modernandroidapp.androidmanagers.NetManager
+import me.fleka.modernandroidapp.data.GitRepoRepository
 import me.fleka.modernandroidapp.databinding.ActivityMainBinding
 import me.fleka.modernandroidapp.uimodels.Repository
 
@@ -19,7 +21,9 @@ class MainActivity : AppCompatActivity(), RepositoryRecyclerViewAdapter.OnItemCl
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        val repository = GitRepoRepository(NetManager(applicationContext))
+        val mainViewModelFactory = MainViewModelFactory(repository)
+        val viewModel = ViewModelProviders.of(this, mainViewModelFactory).get(MainViewModel::class.java)
         binding.viewModel = viewModel
         binding.executePendingBindings()
 
