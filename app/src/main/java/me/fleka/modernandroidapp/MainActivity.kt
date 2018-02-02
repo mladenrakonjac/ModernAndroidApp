@@ -6,8 +6,6 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import me.fleka.modernandroidapp.androidmanagers.NetManager
-import me.fleka.modernandroidapp.data.GitRepoRepository
 import me.fleka.modernandroidapp.databinding.ActivityMainBinding
 import me.fleka.modernandroidapp.uimodels.Repository
 
@@ -15,15 +13,17 @@ class MainActivity : AppCompatActivity(), RepositoryRecyclerViewAdapter.OnItemCl
 
     private lateinit var binding: ActivityMainBinding
     private val repositoryRecyclerViewAdapter = RepositoryRecyclerViewAdapter(arrayListOf(), this)
-
+    private lateinit var mainViewModelFactory: MainViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val repository = GitRepoRepository(NetManager(applicationContext))
-        val mainViewModelFactory = MainViewModelFactory(repository)
-        val viewModel = ViewModelProviders.of(this, mainViewModelFactory).get(MainViewModel::class.java)
+
+        mainViewModelFactory = Injection.provideMainViewModelFactory(applicationContext)
+
+        val viewModel = ViewModelProviders.of(this, mainViewModelFactory)
+                .get(MainViewModel::class.java)
         binding.viewModel = viewModel
         binding.executePendingBindings()
 
