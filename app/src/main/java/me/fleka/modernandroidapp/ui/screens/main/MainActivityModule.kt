@@ -1,4 +1,4 @@
-package me.fleka.modernandroidapp
+package me.fleka.modernandroidapp.ui.screens.main
 
 import android.arch.lifecycle.ViewModel
 import dagger.Binds

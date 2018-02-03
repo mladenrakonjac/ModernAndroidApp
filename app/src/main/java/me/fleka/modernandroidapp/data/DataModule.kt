@@ -1,4 +1,4 @@
-package me.fleka.modernandroidapp
+package me.fleka.modernandroidapp.data
 
 import dagger.Module
 import dagger.Provides

@@ -3,7 +3,7 @@ package me.fleka.modernandroidapp.data
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import me.fleka.modernandroidapp.uimodels.Repository
+import me.fleka.modernandroidapp.ui.uimodels.Repository
 import java.util.concurrent.TimeUnit
 
 /**

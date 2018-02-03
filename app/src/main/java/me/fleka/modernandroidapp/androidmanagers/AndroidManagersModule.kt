@@ -1,8 +1,8 @@
-package me.fleka.modernandroidapp
+package me.fleka.modernandroidapp.androidmanagers
 
 import dagger.Module
 import dagger.Provides
-import me.fleka.modernandroidapp.androidmanagers.NetManager
+import me.fleka.modernandroidapp.ModernApplication
 import javax.inject.Singleton
 
 /**

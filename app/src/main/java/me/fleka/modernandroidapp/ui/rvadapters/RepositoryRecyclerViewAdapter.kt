@@ -1,10 +1,10 @@
-package me.fleka.modernandroidapp
+package me.fleka.modernandroidapp.ui.rvadapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import me.fleka.modernandroidapp.databinding.RvItemRepositoryBinding
-import me.fleka.modernandroidapp.uimodels.Repository
+import me.fleka.modernandroidapp.ui.uimodels.Repository
 
 
 /**

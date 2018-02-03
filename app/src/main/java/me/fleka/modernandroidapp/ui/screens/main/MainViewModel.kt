@@ -1,4 +1,4 @@
-package me.fleka.modernandroidapp
+package me.fleka.modernandroidapp.ui.screens.main
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import me.fleka.modernandroidapp.data.GitRepoRepository
-import me.fleka.modernandroidapp.uimodels.Repository
+import me.fleka.modernandroidapp.ui.uimodels.Repository
 import plusAssign
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package me.fleka.modernandroidapp.uimodels
+package me.fleka.modernandroidapp.ui.uimodels
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable

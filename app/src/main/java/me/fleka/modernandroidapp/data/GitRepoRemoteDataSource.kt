@@ -1,7 +1,7 @@
 package me.fleka.modernandroidapp.data
 
 import io.reactivex.Observable
-import me.fleka.modernandroidapp.uimodels.Repository
+import me.fleka.modernandroidapp.ui.uimodels.Repository
 import java.util.concurrent.TimeUnit
 
 /**
