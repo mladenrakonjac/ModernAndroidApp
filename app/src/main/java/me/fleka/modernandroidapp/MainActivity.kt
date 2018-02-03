@@ -1,6 +1,7 @@
 package me.fleka.modernandroidapp
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -15,14 +16,15 @@ class MainActivity : DaggerAppCompatActivity(), RepositoryRecyclerViewAdapter.On
     private lateinit var binding: ActivityMainBinding
     private val repositoryRecyclerViewAdapter = RepositoryRecyclerViewAdapter(arrayListOf(), this)
     @Inject
-    lateinit var mainViewModelFactory: MainViewModelFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val viewModel = ViewModelProviders.of(this, mainViewModelFactory)
+
+        val viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(MainViewModel::class.java)
         binding.viewModel = viewModel
         binding.executePendingBindings()

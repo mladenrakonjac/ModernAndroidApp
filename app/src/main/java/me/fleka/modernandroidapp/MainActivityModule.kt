@@ -1,9 +1,11 @@
 package me.fleka.modernandroidapp
 
+import android.arch.lifecycle.ViewModel
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import me.fleka.modernandroidapp.data.GitRepoRepository
+import dagger.multibindings.IntoMap
+import me.fleka.modernandroidapp.utility.di.ViewModelKey
 
 /**
  * Created by mladenrakonjac on 02/10/17.
@@ -11,16 +13,13 @@ import me.fleka.modernandroidapp.data.GitRepoRepository
 @Module
 internal abstract class MainActivityModule {
 
-    @Module
-    companion object {
-        @JvmStatic
-        @Provides
-        internal fun providesViewModelFactory(gitRepoRepository: GitRepoRepository):
-                MainViewModelFactory = MainViewModelFactory(gitRepoRepository)
-
-    }
-
     @ContributesAndroidInjector()
     internal abstract fun mainActivity(): MainActivity
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
+
 
 }

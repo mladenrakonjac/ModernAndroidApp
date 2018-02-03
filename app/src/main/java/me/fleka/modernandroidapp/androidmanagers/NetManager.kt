@@ -3,7 +3,7 @@ package me.fleka.modernandroidapp.androidmanagers;
 import android.content.Context
 import android.net.ConnectivityManager
 
-class NetManager(private var applicationContext: Context) {
+class NetManager(var applicationContext: Context) {
 
     val isConnectedToInternet: Boolean?
         get() {
