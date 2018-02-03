@@ -10,11 +10,12 @@ import io.reactivex.schedulers.Schedulers
 import me.fleka.modernandroidapp.data.GitRepoRepository
 import me.fleka.modernandroidapp.uimodels.Repository
 import plusAssign
+import javax.inject.Inject
 
 /**
  * View Model
  */
-class MainViewModel(private var gitRepoRepository: GitRepoRepository) : ViewModel() {
+class MainViewModel(@Inject var gitRepoRepository: GitRepoRepository) : ViewModel() {
 
 
     val text = ObservableField("old data")
