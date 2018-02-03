@@ -5,9 +5,6 @@ import dagger.Provides
 import me.fleka.modernandroidapp.ModernApplication
 import javax.inject.Singleton
 
-/**
- * Created by Mladen Rakonjac on 2/3/18.
- */
 @Module
 class AndroidManagersModule {
 

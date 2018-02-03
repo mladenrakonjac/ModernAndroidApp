@@ -7,9 +7,6 @@ import me.fleka.modernandroidapp.databinding.RvItemRepositoryBinding
 import me.fleka.modernandroidapp.ui.uimodels.Repository
 
 
-/**
- * Created by Mladen Rakonjac on 9/17/17.
- */
 class RepositoryRecyclerViewAdapter(private var items: ArrayList<Repository>,
                                     private var listener: OnItemClickListener)
     : RecyclerView.Adapter<RepositoryRecyclerViewAdapter.ViewHolder>() {

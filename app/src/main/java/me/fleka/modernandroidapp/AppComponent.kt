@@ -8,10 +8,6 @@ import me.fleka.modernandroidapp.ui.screens.main.MainActivityModule
 import me.fleka.modernandroidapp.utility.di.ViewModelBuilder
 import javax.inject.Singleton
 
-/**
- * Created by mladenrakonjac on 02/10/17.
- */
-
 @Singleton
 @Component(
         modules = [AndroidSupportInjectionModule::class,

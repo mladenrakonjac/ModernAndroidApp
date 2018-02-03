@@ -7,9 +7,6 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import me.fleka.modernandroidapp.utility.di.ViewModelKey
 
-/**
- * Created by mladenrakonjac on 02/10/17.
- */
 @Module
 internal abstract class MainActivityModule {
 
