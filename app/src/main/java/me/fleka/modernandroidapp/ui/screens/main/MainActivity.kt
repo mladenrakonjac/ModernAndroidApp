@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import dagger.android.support.DaggerAppCompatActivity
 import me.fleka.modernandroidapp.R
-import me.fleka.modernandroidapp.ui.rvadapters.RepositoryRecyclerViewAdapter
 import me.fleka.modernandroidapp.databinding.ActivityMainBinding
+import me.fleka.modernandroidapp.ui.rvadapters.RepositoryRecyclerViewAdapter
 import me.fleka.modernandroidapp.ui.uimodels.Repository
 import javax.inject.Inject
 
@@ -17,8 +17,7 @@ class MainActivity : DaggerAppCompatActivity(), RepositoryRecyclerViewAdapter.On
 
     private lateinit var binding: ActivityMainBinding
     private val repositoryRecyclerViewAdapter = RepositoryRecyclerViewAdapter(arrayListOf(), this)
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -10,7 +10,7 @@ import me.fleka.modernandroidapp.utility.di.ViewModelKey
 @Module
 internal abstract class MainActivityModule {
 
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector
     internal abstract fun mainActivity(): MainActivity
 
     @Binds
