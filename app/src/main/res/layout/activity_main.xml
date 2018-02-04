@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="me.fleka.modernandroidapp.ui.main.MainViewModel" />
+            type="me.fleka.modernandroidapp.ui.screens.main.MainViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

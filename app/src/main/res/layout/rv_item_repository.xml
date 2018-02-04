@@ -9,7 +9,7 @@
 
         <variable
             name="repository"
-            type="me.fleka.modernandroidapp.uimodels.Repository" />
+            type="me.fleka.modernandroidapp.ui.uimodels.Repository" />
     </data>
 
     <android.support.v7.widget.CardView
