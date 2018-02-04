@@ -2,8 +2,9 @@ package me.fleka.modernandroidapp.androidmanagers;
 
 import android.content.Context
 import android.net.ConnectivityManager
+import javax.inject.Inject
 
-class NetManager(var applicationContext: Context) {
+class NetManager @Inject constructor(var applicationContext: Context) {
 
     val isConnectedToInternet: Boolean?
         get() {
