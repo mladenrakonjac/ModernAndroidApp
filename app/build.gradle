@@ -11,7 +11,7 @@ android {
     buildToolsVersion "27.0.3"
 
     defaultConfig {
-        applicationId "me.fleka.modernandroidapp"
+        applicationId "me.mladenrakonjac.modernandroidapp"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
@@ -34,26 +34,26 @@ android {
 
         finalProduction {
             dimension "default"
-            applicationId "me.fleka.modernandroidapp"
+            applicationId "me.mladenrakonjac.modernandroidapp"
             resValue "string", "app_name", "Modern App"
         }
 
         demoProduction {
             dimension "default"
-            applicationId "me.fleka.modernandroidapp.demoproduction"
+            applicationId "me.mladenrakonjac.modernandroidapp.demoproduction"
             resValue "string", "app_name", "Modern App Demo P"
         }
 
         demoTesting {
             dimension "default"
-            applicationId "me.fleka.modernandroidapp.demotesting"
+            applicationId "me.mladenrakonjac.modernandroidapp.demotesting"
             resValue "string", "app_name", "Modern App Demo T"
         }
 
 
         mock {
             dimension "default"
-            applicationId "me.fleka.modernandroidapp.mock"
+            applicationId "me.mladenrakonjac.modernandroidapp.mock"
             resValue "string", "app_name", "Modern App Mock"
         }
     }

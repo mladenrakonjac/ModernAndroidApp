@@ -9,13 +9,13 @@
 
         <variable
             name="viewModel"
-            type="me.fleka.modernandroidapp.ui.screens.main.MainViewModel" />
+            type="me.mladenrakonjac.modernandroidapp.ui.screens.main.MainViewModel"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.screens.main.MainActivity">
+        tools:context="me.mladenrakonjac.modernandroidapp.ui.screens.main.MainActivity">
 
         <ProgressBar
             android:id="@+id/loading"
