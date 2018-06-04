@@ -58,6 +58,10 @@ android {
         }
     }
 
+    kapt {
+        mapDiagnosticLocations = true
+    }
+
     dataBinding {
         enabled = true
     }
