@@ -11,8 +11,8 @@ class RepositoryRecyclerViewAdapter(private var items: ArrayList<Repository>,
                                     private var listener: OnItemClickListener)
     : RecyclerView.Adapter<RepositoryRecyclerViewAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent?.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
         val binding = RvItemRepositoryBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
